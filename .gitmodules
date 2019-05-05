@@ -1,0 +1,7 @@
+[submodule "nemopan"]
+	path = nemopan
+	url = https://github.com/paxbun/nemopan
+	branch = master
+[submodule "paxbun"]
+	path = paxbun
+	url = https://github.com/paxbun/paxbun
