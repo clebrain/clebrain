@@ -1,26 +1,27 @@
 #include <clebrain/bciCompetitionIV/Table.hh>
+#include <clebrain/bciCompetitionIV/TableReader.hh>
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 using std::cout;
 using std::endl;
+using std::ifstream;
 
-int main(int argc, char *argv [])
+int main(int argc, char *argv[])
 {
-    /*
-    ofstream myfile;
-    myfile.open("Clebrain\\Data\\..."); //please include BCICompetitionIV data to Clebrain\Data
-    
-    clebrain::bciCompetitionIV::TableReader tablereader =
-      clebrain::bciCompetitionIV::TableReader(myfile, );
+    ifstream
+        cnt("../clebrain-data/BCICIV_calib_ds1a_cnt.txt", ifstream::in),
+        mrk("../clebrain-data/BCICIV_calib_ds1a_mrk.txt", ifstream::in),
+        nfo("../clebrain-data/BCICIV_calib_ds1a_nfo.txt", ifstream::in);
 
-    tablereader.Read(myfile, ...)
+    clebrain::bciCompetitionIV::TableReader reader(
+        cnt, mrk, nfo);
+    clebrain::bciCompetitionIV::Table table;
+    reader.Read(table);
 
-    myfile.close();
-    */
-
-    clebrain::bciCompetitionIV::Foo();
-    cout << "Hello, world!" << endl;
+    cout << "fs: " << table.fs() << '\n'
+         << "classes: " << table.classes().first
+         << ", " << table.classes().second << '\n';
     return 0;
 }

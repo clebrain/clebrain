@@ -4,7 +4,6 @@
 #define __H_CLEBRAIN_BCICOMPETITIONIV_TABLE__
 
 #include <paxbun/Helpers.hh>
-#include <paxbun/Array.hh>
 
 #include <string>
 #include <utility>
@@ -18,17 +17,13 @@ namespace bciCompetitionIV
 
 class Table final
 {
-  public:
-    template <typename T>
-    using Array = paxbun::Array<T>;
-
   private:
     unsigned int _fs;
     std::pair<std::string, std::string> _classes;
-    Array<std::pair<std::string, bool>> _targetCueInfoStruct;
-    Array<std::string> _clab;
-    Array<std::pair<float, float>> _pos;
-    std::vector<Array<float>> _data;
+    std::vector<std::pair<float, bool>> _targetCueInfoStruct;
+    std::vector<std::string> _clab;
+    std::vector<std::pair<float, float>> _pos;
+    std::vector<std::vector<float>> _data;
 
   public:
     //Getters and Setters (using paxbun helpers)
