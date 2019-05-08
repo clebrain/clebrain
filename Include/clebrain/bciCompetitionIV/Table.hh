@@ -23,7 +23,8 @@ class Table final
     std::vector<std::pair<float, bool>> _targetCueInfoStruct;
     std::vector<std::string> _clab;
     std::vector<std::pair<float, float>> _pos;
-    std::vector<std::vector<float>> _data;
+    std::vector<std::vector<float>> _calib;
+    std::vector<std::vector<float>> _eval;
 
   public:
     //Getters and Setters (using paxbun helpers)
@@ -32,20 +33,23 @@ class Table final
     PAXBUN_REF_GET(targetCueInfoStruct);
     PAXBUN_REF_GET(clab);
     PAXBUN_REF_GET(pos);
-    PAXBUN_REF_GET(data);
+    PAXBUN_REF_GET(calib);
+    PAXBUN_REF_GET(eval);
 
     PAXBUN_VAL_SET(fs);
     PAXBUN_COPY_SET(classes);
     PAXBUN_COPY_SET(targetCueInfoStruct);
     PAXBUN_COPY_SET(clab);
     PAXBUN_COPY_SET(pos);
-    PAXBUN_COPY_SET(data);
+    PAXBUN_COPY_SET(calib);
+    PAXBUN_COPY_SET(eval);
     
     PAXBUN_MOVE_SET(classes);
     PAXBUN_MOVE_SET(targetCueInfoStruct);
     PAXBUN_MOVE_SET(clab);
     PAXBUN_MOVE_SET(pos);
-    PAXBUN_MOVE_SET(data);
+    PAXBUN_MOVE_SET(calib);
+    PAXBUN_MOVE_SET(eval);
 
     //Constructor
     Table() : _fs(0)
@@ -58,7 +62,8 @@ class Table final
           _targetCueInfoStruct(table._targetCueInfoStruct),
           _clab(table._clab),
           _pos(table._pos),
-          _data(table._data) {}
+          _calib(table._calib),
+          _eval(table._eval) {}
 
     Table(Table &&table) noexcept
         : _fs(table._fs),
@@ -66,7 +71,8 @@ class Table final
           _targetCueInfoStruct(std::move(table._targetCueInfoStruct)),
           _clab(std::move(table._clab)),
           _pos(std::move(table._pos)),
-          _data(std::move(table._data))
+          _calib(std::move(table._calib)),
+          _eval(std::move(table._eval))
     {
         table._fs = 0;
     }
@@ -81,7 +87,8 @@ class Table final
             _targetCueInfoStruct = table._targetCueInfoStruct;
             _clab = table._clab;
             _pos = table._pos;
-            _data = table._data;
+            _calib = table._calib;
+            _eval = table._eval;
         }
         return *this;
     }
@@ -95,7 +102,8 @@ class Table final
             _targetCueInfoStruct = std::move(table._targetCueInfoStruct);
             _clab = std::move(table._clab);
             _pos = std::move(table._pos);
-            _data = std::move(table._data);
+            _calib = std::move(table._calib);
+            _eval = std::move(table._eval);
             table._fs = 0;
         }
         return *this;

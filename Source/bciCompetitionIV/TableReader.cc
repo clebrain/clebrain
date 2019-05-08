@@ -22,19 +22,19 @@ void clebrain::bciCompetitionIV::TableReader::Read(clebrain::bciCompetitionIV::T
             auto &xpos = nfo["xpos"];
             auto &ypos = nfo["ypos"];
             std::vector<std::pair<float, float>> pos(xpos.size());
-            for (size_t i = 0, l = xpos.size(); i < l; i++)
+            for (size_t i = 0, l = xpos.size(); i < l; ++i)
                 pos[i] = std::make_pair(std::stof(xpos[i]), std::stof(ypos[i]));
             table.pos(std::move(pos));
         }
     }
 
-    table.data(_ReadMatrix(_cnt));
-
+    table.eval(_ReadMatrix(_cntEval));
+    table.calib(_ReadMatrix(_cntCalib));
 
     {
         auto mrk = _ReadMatrix(_mrk);
         std::vector<std::pair<float, bool>> target_cue_info_struct(mrk.size());
-        for (size_t i = 0, l = mrk.size(); i < l; i++)
+        for (size_t i = 0, l = mrk.size(); i < l; ++i)
             target_cue_info_struct[i] = std::make_pair(mrk[i][0], mrk[i][1] == 1.0f);
 
         table.targetCueInfoStruct(std::move(target_cue_info_struct));

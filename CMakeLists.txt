@@ -15,11 +15,16 @@ string(
     CLEBRAIN_BCICOMPETITIONIV_DATA_LIST
     "${CLEBRAIN_BCICOMPETITIONIV_DATA_LIST_TXT}")
 
+set(
+    CLEBRAIN_BCICOMPETITIONIV_DATA_DIR
+    "${PROJECT_SOURCE_DIR}/../clebrain-data/"
+)
+
 foreach(FILENAME ${CLEBRAIN_BCICOMPETITIONIV_DATA_LIST})
-    if (NOT EXISTS "${PROJECT_SOURCE_DIR}/../clebrain-data/${FILENAME}")
+    if (NOT EXISTS "${CLEBRAIN_BCICOMPETITIONIV_DATA_DIR}${FILENAME}")
         message(
             FATAL_ERROR
-            "Data file ${FILENAME} is not found.\n${PROJECT_SOURCE_DIR}/../clebrain-data/${FILENAME}"
+            "BCICompetitionIV Data file ${FILENAME} is not found."
         )
     endif()
 endforeach()
@@ -28,10 +33,26 @@ include_directories(
     Include
     paxbun/Include # Clebrain uses some component of paxbun
 )
-add_library(clebrain-bcicompetitioniv
+add_library(
+    clebrain-bcicompetitioniv
     Source/bciCompetitionIV/Table.cc
     Source/bciCompetitionIV/TableReader.cc
 )
 
-add_executable(clebrain-bcicompetitioniv-test-table Test/Test.cc)
-target_link_libraries(clebrain-bcicompetitioniv-test-table clebrain-bcicompetitioniv)
+add_executable(
+    clebrain-bcicompetitioniv-test-table
+    Test/bciCompetitionIV/Table.cc
+)
+target_link_libraries(
+    clebrain-bcicompetitioniv-test-table
+    clebrain-bcicompetitioniv
+)
+target_compile_definitions(
+    clebrain-bcicompetitioniv-test-table
+    PUBLIC
+    "-DCLEBRAIN_BCICOMPETITIONIV_DATA_DIR=\"${CLEBRAIN_BCICOMPETITIONIV_DATA_DIR}\""
+)
+add_test(
+    bcicompetitioniv-table
+    clebrain-bcicompetitioniv-test-table
+)
