@@ -60,7 +60,7 @@ class Table final
           _pos(table._pos),
           _data(table._data) {}
 
-    Table(Table &&table)
+    Table(Table &&table) noexcept
         : _fs(table._fs),
           _classes(std::move(table._classes)),
           _targetCueInfoStruct(std::move(table._targetCueInfoStruct)),
@@ -86,7 +86,7 @@ class Table final
         return *this;
     }
 
-    Table &operator=(Table &&table)
+    Table &operator=(Table &&table) noexcept
     {
         if (this != &table)
         {
