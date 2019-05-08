@@ -2,6 +2,7 @@
 
 cmake_minimum_required(VERSION 3.13)
 project(clebrain)
+enable_testing()
 
 file(
     READ
