@@ -30,7 +30,7 @@ int main()
     if (table.targetCueInfoStruct().size() != 200)
         return 3;
 
-    if (table.calib().size() != 190595)
+    if (table.calib().size() != 190594)
         return 4;
 
     if (table.eval().size() != 240558)
