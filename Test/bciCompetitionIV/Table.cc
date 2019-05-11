@@ -1,5 +1,4 @@
 #include <clebrain/bciCompetitionIV/Table.hh>
-#include <clebrain/bciCompetitionIV/TableReader.hh>
 
 #include <fstream>
 #include <string>
@@ -16,10 +15,10 @@ int main()
         mrk(CLEBRAIN_BCICOMPETITIONIV_DATA_DIR "BCICIV_calib_ds1a_mrk.txt", ifstream::in),
         nfo(CLEBRAIN_BCICOMPETITIONIV_DATA_DIR "BCICIV_calib_ds1a_nfo.txt", ifstream::in);
 
-    clebrain::bciCompetitionIV::TableReader reader(
-        calib, eval, mrk, nfo);
     clebrain::bciCompetitionIV::Table table;
-    reader.Read(table);
+    
+    table = clebrain::bciCompetitionIV::Table::ReadFromStream(
+        calib, eval, mrk, nfo);
 
     if (table.fs() != 100)
         return 1;

@@ -37,7 +37,6 @@ include_directories(
 add_library(
     clebrain-bcicompetitioniv
     Source/bciCompetitionIV/Table.cc
-    Source/bciCompetitionIV/TableReader.cc
 )
 
 add_executable(

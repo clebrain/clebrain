@@ -5,6 +5,8 @@
 
 #include <paxbun/Helpers.hh>
 
+#include <iostream>
+#include <map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -43,7 +45,7 @@ class Table final
     PAXBUN_COPY_SET(pos);
     PAXBUN_COPY_SET(calib);
     PAXBUN_COPY_SET(eval);
-    
+
     PAXBUN_MOVE_SET(classes);
     PAXBUN_MOVE_SET(targetCueInfoStruct);
     PAXBUN_MOVE_SET(clab);
@@ -111,9 +113,19 @@ class Table final
 
     //Destructor
     ~Table() {}
-};
 
-void Foo();
+  public:
+    static Table ReadFromStream(
+        std::istream &cnt_calib,
+        std::istream &cnt_eval,
+        std::istream &mrk,
+        std::istream &nfo);
+
+  private:
+    static std::map<std::string, std::vector<std::string>> _ReadInfo(std::istream &i);
+    static std::vector<std::vector<float>> _ReadMatrix(std::istream &i);
+    static void _ValidateStream(std::istream &i);
+};
 
 } // namespace bciCompetitionIV
 
