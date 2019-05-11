@@ -9,7 +9,7 @@
 #include <utility>
 
 
-clebrain::bciCompetitionIV::Table clebrain::bciCompetitionIV::Table::TableReadStream(
+clebrain::bciCompetitionIV::Table clebrain::bciCompetitionIV::Table::ReadFromStream(
     std::istream &cnt_calib,
     std::istream &cnt_eval,
     std::istream &mrk,

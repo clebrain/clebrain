@@ -17,7 +17,7 @@ int main()
 
     clebrain::bciCompetitionIV::Table table;
     
-    table = clebrain::bciCompetitionIV::Table::TableReadStream(
+    table = clebrain::bciCompetitionIV::Table::ReadFromStream(
         calib, eval, mrk, nfo);
 
     if (table.fs() != 100)

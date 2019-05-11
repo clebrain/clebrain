@@ -115,7 +115,7 @@ class Table final
     ~Table() {}
 
   public:
-    static Table TableReadStream(
+    static Table ReadFromStream(
         std::istream &cnt_calib,
         std::istream &cnt_eval,
         std::istream &mrk,
