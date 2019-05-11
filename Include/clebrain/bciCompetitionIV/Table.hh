@@ -53,6 +53,12 @@ class Table final
     PAXBUN_MOVE_SET(calib);
     PAXBUN_MOVE_SET(eval);
 
+  private:
+    static std::map<std::string, std::vector<std::string>> _ReadInfo(std::istream &i);
+    static std::vector<std::vector<float>> _ReadMatrix(std::istream &i);
+    static void _ValidateStream(std::istream &i);
+
+  public:
     //Constructor
     Table() : _fs(0)
     {
@@ -114,17 +120,11 @@ class Table final
     //Destructor
     ~Table() {}
 
-  public:
     static Table ReadFromStream(
         std::istream &cnt_calib,
         std::istream &cnt_eval,
         std::istream &mrk,
         std::istream &nfo);
-
-  private:
-    static std::map<std::string, std::vector<std::string>> _ReadInfo(std::istream &i);
-    static std::vector<std::vector<float>> _ReadMatrix(std::istream &i);
-    static void _ValidateStream(std::istream &i);
 };
 
 } // namespace bciCompetitionIV
